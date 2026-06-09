@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Medium.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-ExtraBold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/assets/fonts/Poppins-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  background: #f8f7f2;
+  color: #0c0c0d;
+  --grid-size: 80px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background:
+    linear-gradient(to right, rgba(12, 12, 13, 0.075) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(12, 12, 13, 0.075) 1px, transparent 1px),
+    #f8f7f2;
+  background-size: var(--grid-size) var(--grid-size);
+  font-family: "Poppins", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-synthesis-weight: none;
+}
+
+body * {
+  font-weight: 500 !important;
+}
+
+.name-bold {
+  font-weight: 700 !important;
+}
+
+::selection {
+  background: #ff4b1f;
+  color: #fff;
+}
+
+.grid-surface {
+  background:
+    linear-gradient(to right, rgba(12, 12, 13, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(12, 12, 13, 0.08) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.portrait-frame {
+  position: relative;
+  overflow: hidden;
+  background: #fbfaf6;
+}
+
+.portrait-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tools-guide {
+  background-image: linear-gradient(to bottom, #ff4b1f 45%, transparent 45%);
+  background-size: 1px 7px;
+}
+
+.project-visual-one {
+  background:
+    linear-gradient(#111 0 13%, #f8f7f2 13% 29%, #111 29% 46%, transparent 46%),
+    radial-gradient(circle at 30% 82%, #ff4b1f 0 22%, transparent 22.5%),
+    radial-gradient(circle at 78% 70%, #f8f7f2 0 13%, transparent 13.4%),
+    radial-gradient(circle at 84% 98%, #858582 0 18%, transparent 18.4%),
+    #111;
+}
+
+.project-visual-two {
+  background:
+    linear-gradient(135deg, rgba(255, 75, 31, 0.92), rgba(255, 75, 31, 0.92)) 8% 9% / 22% 18% no-repeat,
+    linear-gradient(90deg, #111 0 10%, transparent 10% 100%) 0 0 / 22px 22px,
+    linear-gradient(#e7e4dc, #e7e4dc);
+}
+
+.project-visual-three {
+  background:
+    radial-gradient(circle at 78% 20%, #ff4b1f 0 16%, transparent 16.4%),
+    linear-gradient(90deg, transparent 0 16%, #111 16% 27%, transparent 27%),
+    linear-gradient(180deg, transparent 0 26%, #111 26% 37%, transparent 37%),
+    radial-gradient(#111 1.4px, transparent 1.4px),
+    #e7e4dc;
+  background-size: auto, auto, auto, 14px 14px, auto;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --grid-size: 44px;
+  }
+}
