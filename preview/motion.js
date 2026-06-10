@@ -18,32 +18,24 @@ window.addEventListener("load", () => {
 });
 
 if (!reduceMotion) {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
-  );
-
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -6% 0px" });
   reveals.forEach((element) => observer.observe(element));
 
-  const toolsObserver = new IntersectionObserver(
-    ([entry]) => {
-      if (!entry?.isIntersecting) return;
-      toolImages.forEach((image, index) => {
-        image.style.transitionDelay = `${index * 65}ms`;
-        image.classList.add("is-visible");
-      });
-      toolsObserver.disconnect();
-    },
-    { threshold: 0.3 }
-  );
-
+  const toolsObserver = new IntersectionObserver(([entry]) => {
+    if (!entry?.isIntersecting) return;
+    toolImages.forEach((image, index) => {
+      image.style.transitionDelay = `${index * 65}ms`;
+      image.classList.add("is-visible");
+    });
+    toolsObserver.disconnect();
+  }, { threshold: 0.3 });
   if (toolImages[0]) toolsObserver.observe(toolImages[0].parentElement);
 
   let pointerX = 0;
@@ -56,7 +48,6 @@ if (!reduceMotion) {
   window.addEventListener("pointermove", (event) => {
     pointerX = event.clientX;
     pointerY = event.clientY;
-
     if (portrait && window.innerWidth > 900) {
       const rect = portrait.getBoundingClientRect();
       const x = (event.clientX - rect.left) / rect.width - 0.5;
@@ -71,26 +62,20 @@ if (!reduceMotion) {
     const delta = currentScroll - previousScroll;
     previousScroll = currentScroll;
     marqueeVelocity = Math.max(-2.4, Math.min(2.4, delta * 0.08));
-
-    if (portrait) {
-      portrait.style.setProperty("--portrait-y", `${Math.min(currentScroll * 0.055, 28)}px`);
-    }
+    if (portrait) portrait.style.setProperty("--portrait-y", `${Math.min(currentScroll * 0.055, 28)}px`);
   }, { passive: true });
 
   const animate = () => {
     cursorX += (pointerX - cursorX) * 0.16;
     cursorY += (pointerY - cursorY) * 0.16;
     if (cursor) cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
-
     marqueeVelocity *= 0.9;
-    if (marquee) {
-      marquee.style.setProperty("--marquee-skew", `${marqueeVelocity}deg`);
-    }
+    if (marquee) marquee.style.setProperty("--marquee-skew", `${marqueeVelocity}deg`);
     requestAnimationFrame(animate);
   };
   animate();
 
-  document.querySelectorAll("a, button, .gallery-card").forEach((element) => {
+  document.querySelectorAll("a, button, .gallery-card, .process-card").forEach((element) => {
     element.addEventListener("pointerenter", () => cursor?.classList.add("is-active"));
     element.addEventListener("pointerleave", () => cursor?.classList.remove("is-active"));
   });
@@ -101,9 +86,7 @@ if (!reduceMotion) {
     const distance = gallery.offsetHeight - window.innerHeight;
     const progress = Math.max(0, Math.min(1, -rect.top / Math.max(distance, 1)));
     const travel = progress * Math.max(cards.length - 1, 1);
-
     galleryProgress?.style.setProperty("--gallery-progress", progress);
-
     cards.forEach((card, index) => {
       const offset = index - travel;
       const magnitude = Math.abs(offset);
@@ -114,7 +97,6 @@ if (!reduceMotion) {
       const rotateZ = offset * 3;
       const scale = Math.max(0.72, 1 - magnitude * 0.1);
       const opacity = Math.max(0.24, 1 - Math.max(0, magnitude - 1.4) * 0.45);
-
       card.style.setProperty("--gallery-x", `${x}px`);
       card.style.setProperty("--gallery-y", `${curve}px`);
       card.style.setProperty("--gallery-z", `${z}px`);
