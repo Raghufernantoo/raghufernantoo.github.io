@@ -36,10 +36,13 @@
 
 html {
   scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
   overflow-x: hidden;
   background: var(--paper);
   color: var(--ink);
@@ -1068,7 +1071,8 @@ html.motion-ready {
   .chapter-number { font-size: 9rem; }
   .chapter > h2 { font-size: clamp(2.8rem, 14vw, 4.8rem); }
   .process-card { min-height: 660px; margin-bottom: 30vh; padding: 34px 26px; }
-  .process-card.is-active { --process-scale: 1.015; }
+  .process-stack { width: 100%; overflow: clip; }
+  .process-card.is-active { --process-scale: 1.01; }
   .process-card[data-step="1"] { --card-top: 84px; }
   .process-card[data-step="2"] { --card-top: 94px; }
   .process-card[data-step="3"] { --card-top: 104px; }
